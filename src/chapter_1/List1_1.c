@@ -28,17 +28,17 @@ int main(void){
 
     srand((unsigned int)time(NULL));
 
-    printf("ソート準備:\n");
+    printf("Prepare:\n");
     for(i=0; i<N; i++){
         /* 配列にランダム値を格納 */
         sort[i] = rand();
         printf("%d ", sort[i]);
     }
 
-    printf("\nソート開始:\n");
+    printf("\nStart:\n");
     BubbleSort();
-
-    printf("\nソート終了:\n");
+    
+    printf("\nEnd:\n");
 
     for(i=0;i<N;i++){
         printf("%d ",sort[i]);
