@@ -30,6 +30,13 @@ public class List1_6 {
 					int temp = sort[i];
 					sort[i] = sort[i+gap];
 					sort[i+gap] = temp;
+
+					String s ="\n";
+
+					for(int j=0; j<N; ++j) {
+						s += sort[j] + " ";
+					}
+					System.out.println(s);
 				}
 			}
 			// 一度も並べ替えずにGAP＝＝１で見終われば終了
