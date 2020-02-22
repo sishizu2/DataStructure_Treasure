@@ -50,7 +50,7 @@ int dequeue(void){
 void queue_print(void){
     int i;
     for(i = queue_first; i != queue_last; i = (i + 1) % QUEUE_MAX){
-        
+
         printf("%d ", queue[i]);
     }
 }
@@ -60,7 +60,7 @@ int main(void){
     int i, j;
 
     do{
-        printf("current queue");
+        printf("current queue\n");
         queue_print();
         printf("\ncommand 0:end 1:enque 2:dequeue\n");
 
