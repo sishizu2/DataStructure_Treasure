@@ -35,5 +35,8 @@ int main(void){
 
     scanf("%d", &i);
     printf("%d has %d of 1\n", i, num_of_oneL(i));
+
+    // printf("\n%d", 10/10000); == 0
+
     return EXIT_SUCCESS;
 }
