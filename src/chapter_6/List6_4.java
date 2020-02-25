@@ -107,43 +107,73 @@ public class List6_4 {
 				}else if(direction == 0) {
 					treeRoot = node.right;
 				}
+			}else {
+				// 親のポインタを変更する
+				if(direction == -1) {
+					parentNode.left = node.left;
+				}else if(direction == 1) {
+					parentNode.right = node.left;
+				}else if(direction == 0) {
+					treeRoot = node.left;
+				}
+			}
+		}else {
+			// 両者ともNULLでない→左右両方にノードがある
+			// Node左側の、最も大きな値（最も右側の値）を取得する
+			aTreeNode leftBiggest = node.left;
+			parentNode = node;
+			direction = -1;
+
+			while(leftBiggest.right != null) {
+				parentNode = leftBiggest;
+				leftBiggest = leftBiggest.right;
+				direction = 1;
+			}
+
+			// left_biggestの値をnodeに代入し、leftBiggestは左側の枝を入れる
+			node.value = leftBiggest.value;
+			if(direction == -1) {
+				parentNode.left = leftBiggest.left;
+			}else {
+				parentNode.right = leftBiggest.left;
 			}
 		}
 		return true;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
+
+	private static void printTree(int depth, aTreeNode node) {
+
+		if(node == null) {
+			return;
+		}
+		printTree(depth + 1, node.left);
+
+		for(int i = 0; i < depth; i++) {
+			System.out.println("   ");
+		}
+
+		System.out.println(node.value);
+
+		printTree(depth + 1, node.right);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
