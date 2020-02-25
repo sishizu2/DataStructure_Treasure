@@ -171,4 +171,68 @@ void print_tree(int depth, tree_node* node){
         return;
     }
     print_tree(depth + 1, node->left);
+    for(i = 0; i < depth; i++){
+        printf(" ");
+    }
+    printf("%d\n", node->value);
+    print_tree(depth + 1, node->right);
+}
+
+void free_tree(tree_node* node){
+    if(node == NULL){
+        return;
+    }
+    // まず子nodeのメモリを解放する
+    free_tree(node->left);
+    free_tree(node->right);
+    // 自分自身を解放
+    free(node);
+}
+
+int main(void){
+    int i, action;
+
+    for(i = 0; i < 10; i++){
+        insert_tree(rand() % 99 + 1, tree_root);
+    }
+
+    for(;;){
+        print_tree(0, tree_root);
+        printf("1:add 2:search 3:delete other than these, end\n");
+        scanf("%d", &action);
+        switch(action){
+            case 1:
+            printf("input value from 1 ~ 100 to add\n");
+            scanf("%d", &i);
+            if(i < 1 || i > 100){
+                continue;
+            }
+            insert_tree(i, tree_root);
+            break;
+            
+            case 2:
+            printf("input number to search\n");
+            scanf("%d", &i);
+            if(find_value(tree_root, i) != NULL){
+                printf("%d is found\n", i);
+            }else{
+                printf("%d is not found\n", i);
+            }
+            break;
+
+            case 3:
+            printf("input number to be deleted\n");
+            scanf("%d", &i);
+            if(delete_tree(i) == 1){
+                printf("%d was deleted\n");
+            }else{
+                printf("%d was not found\n", i);
+            }
+            break;
+            
+            default:
+            free_tree(tree_root);
+            return EXIT_SUCCESS;
+        }
+    }
 }
