@@ -135,7 +135,7 @@ void InitHashTable(HASHTABLE *hashtable, unsigned int size){
     hashtable->data = (WORDSET**)malloc(sizeof(WORDSET*) * size);
     
     // ハッシュテーブルをNULL埋め
-    memset(hashtable->data, NULL, sizeof(WORDSET*) * size);
+    memset(hashtable->data, (int)((void *)0), sizeof(WORDSET*) * size);
 
     hashtable->size = 0;
 }
